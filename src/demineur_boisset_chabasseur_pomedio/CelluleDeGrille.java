@@ -12,7 +12,7 @@ public class CelluleDeGrille {
     private int valChiffre;
     private boolean avoirBombe;
     private boolean avoirDrapeau;
-
+ 
     public CelluleDeGrille() {
         this.valChiffre = 0;
         this.avoirBombe = false;

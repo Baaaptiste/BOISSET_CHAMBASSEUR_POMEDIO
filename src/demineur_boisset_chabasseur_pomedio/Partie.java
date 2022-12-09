@@ -4,6 +4,8 @@
  */
 package demineur_boisset_chabasseur_pomedio;
 
+import java.util.Random;
+
 /**
  *
  * @author bapti
@@ -13,11 +15,21 @@ public class Partie {
     
     
     public void placerBombeAlea(){
-        
+        Random r = new Random();
+        int i=0;
+        while (i!=15){
+            int ligne = r.nextInt(10);
+            int colonne = r.nextInt(10);
+            if (plateau.presenceBombe(ligne,colonne)==false){
+                plateau.placerBombe(ligne,colonne);
+                i+=1;
+            }
+        }
     }
     
     public void initialiserPartie(){
         plateau.viderGrille();
+        placerBombeAlea();
     }
 
 }

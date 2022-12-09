@@ -31,7 +31,9 @@ public class PlateauDeJeu {
             for (int j = colonne-1; j<= colonne + 1; j++){
                 if (j<0)i++;
                 if (j>=10)break;
-                grille[i][j].incrementerCase();
+                if (grille[i][j].presenceBombe()==false){
+                    grille[i][j].incrementerCase();
+                }
             }
         }
     }
