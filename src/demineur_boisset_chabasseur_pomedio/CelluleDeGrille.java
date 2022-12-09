@@ -9,12 +9,12 @@ package demineur_boisset_chabasseur_pomedio;
  * @author bapti
  */
 public class CelluleDeGrille {
-    private int Chiffres;
+    private int valChiffre;
     private boolean avoirBombe;
     private boolean avoirDrapeau;
 
     public CelluleDeGrille() {
-        this.Chiffres = 0;
+        this.valChiffre = 0;
         this.avoirBombe = false;
         this.avoirDrapeau = false;
     }
@@ -27,6 +27,19 @@ public class CelluleDeGrille {
     }
     public void retirerDrapeau(){
         avoirDrapeau = false;
+    }
+    public void retirerBombe(){
+        avoirBombe = false;
+    }
+    public void initChiffre(){
+         valChiffre=0;
+    }
+    
+    public int lireChiffre (){
+        return valChiffre;
+    }
+    public void incrementerCase(){
+        valChiffre+=1;
     }
     public boolean presenceBombe(){
         if (avoirBombe==false){

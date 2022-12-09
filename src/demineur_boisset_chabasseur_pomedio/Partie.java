@@ -9,5 +9,15 @@ package demineur_boisset_chabasseur_pomedio;
  * @author bapti
  */
 public class Partie {
+    private PlateauDeJeu plateau  = new PlateauDeJeu(); 
     
+    
+    public void placerBombeAlea(){
+        
+    }
+    
+    public void initialiserPartie(){
+        plateau.viderGrille();
+    }
+
 }
