@@ -8,59 +8,88 @@ package demineur_boisset_chabasseur_pomedio;
  *
  * @author bapti
  */
-public class CelluleDeGrille  {
+public class CelluleDeGrille {
+
     private int valChiffre;
     private boolean avoirBombe;
     private boolean avoirDrapeau;
- 
+    private boolean lacase;
+    private boolean perdue;
+
     public CelluleDeGrille() {
         this.valChiffre = 0;
         this.avoirBombe = false;
         this.avoirDrapeau = false;
+        this.lacase = false;
+        this.perdue = false;
     }
-    
-    public void placerBombe(){
+
+    public void placerBombe() {
         avoirBombe = true;
     }
-    public void placerDrapeau(){
+
+    public void placeDrapeau() {
         avoirDrapeau = true;
     }
-    public void retirerDrapeau(){
+
+    public void retirerDrapeau() {
         avoirDrapeau = false;
     }
-    public void retirerBombe(){
+
+    public void retirerBombe() {
         avoirBombe = false;
     }
-    public void initChiffre(){
-         valChiffre=0;
-    }
-    
 
-    public void incrementerCase(){
-        valChiffre+=1;
+    public void initChiffre() {
+        valChiffre = 0;
     }
-    public boolean presenceBombe(){
-        if (avoirBombe==false){
-            return false ;
-        }
-        else{
-            return true ;
+
+    public void incrementerCase() {
+        valChiffre += 1;
+    }
+
+    public boolean presenceBombe() {
+        if (avoirBombe == false) {
+            return false;
+        } else {
+            return true;
         }
     }
-    public boolean presenceDrapeau(){
-        if (avoirDrapeau==false){
-            return false ;
+
+    public boolean presenceDrapeau() {
+        if (avoirDrapeau == false) {
+            return false;
+        } else {
+            return true;
         }
-        else{
-            return true ;
-        }
-    }  
+    }
+
+    public boolean lirelacase() {
+        return lacase = true;
+    }
+
+    public boolean initlacase() {
+        return lacase = false;
+    }
+
+    public boolean isLacase() {
+        return lacase;
+    }
 
     public int getValChiffre() {
         return valChiffre;
     }
 
-  
-    
-    
+    public boolean PartiePerdue() {
+        return perdue = true;
+    }
+
+    public boolean initPartiePerdue() {
+        return perdue = false;
+    }
+
+    public boolean isPerdue() {
+        return perdue;
+    }
+
 }

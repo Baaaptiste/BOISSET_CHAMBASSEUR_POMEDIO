@@ -25,7 +25,7 @@ public class Partie {
                 i+=1;
             }
         }
-    }
+    } 
     
     public void initialiserPartie(){
         plateau.viderGrille();

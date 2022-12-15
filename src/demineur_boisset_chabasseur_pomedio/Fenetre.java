@@ -11,16 +11,33 @@ import java.util.Random;
  * @author bapti
  */
 public class Fenetre extends javax.swing.JFrame {
+
     private PlateauDeJeu plateau = new PlateauDeJeu();
+
     /**
      * Creates new form Fenetre
      */
     public Fenetre() {
         initComponents();
-        for (int i = 0; i<20; i++) {
+        for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
-                PanelJeu.add(cellGraph);      
+
+                cellGraph.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        CelluleDeGrille cases = cellGraph.celluleAssociee;
+                        if (cases.presenceBombe() == false) {
+                            cases.lirelacase();
+                        }
+                        if (cases.presenceBombe() == true) {
+                            TextMessage.setText("Vous avez perdu");
+                            cases.PartiePerdue();
+
+                        }
+                    }
+
+                });
+                PanelJeu.add(cellGraph);
             }
         }
         initialiserPartie();
@@ -36,14 +53,21 @@ public class Fenetre extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         PanelJeu = new javax.swing.JPanel();
         PanelAffichage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_Start = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        NomJoueur = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TextMessage = new javax.swing.JTextArea();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 540));
@@ -70,17 +94,10 @@ public class Fenetre extends javax.swing.JFrame {
                 Btn_StartActionPerformed(evt);
             }
         });
-        PanelAffichage.add(Btn_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        PanelAffichage.add(Btn_Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jLabel3.setText("Nom Joueur :");
-        PanelAffichage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
-
-        NomJoueur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomJoueurActionPerformed(evt);
-            }
-        });
-        PanelAffichage.add(NomJoueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 90, 30));
+        jLabel3.setText("Info Partie :");
+        PanelAffichage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
 
         jLabel5.setText("Nombre de Bombe :");
         PanelAffichage.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, 20));
@@ -89,6 +106,12 @@ public class Fenetre extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel2.setText("30");
         PanelAffichage.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 20));
+
+        TextMessage.setColumns(20);
+        TextMessage.setRows(5);
+        jScrollPane2.setViewportView(TextMessage);
+
+        PanelAffichage.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 150, 60));
 
         getContentPane().add(PanelAffichage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 120));
 
@@ -99,12 +122,8 @@ public class Fenetre extends javax.swing.JFrame {
         // TODO add your handling code here:
         initialiserPartie();
         PanelJeu.repaint();
-        
-    }//GEN-LAST:event_Btn_StartActionPerformed
 
-    private void NomJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomJoueurActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomJoueurActionPerformed
+    }//GEN-LAST:event_Btn_StartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,35 +157,38 @@ public class Fenetre extends javax.swing.JFrame {
             public void run() {
                 new Fenetre().setVisible(true);
             }
-        }); 
+        });
     }
-    
-    void placerBombeAlea(){
+
+    void placerBombeAlea() {
         Random r = new Random();
-        int i=0;
-        while (i!=10){
+        int i = 0;
+        while (i != 10) {
             int ligne = r.nextInt(20);
             int colonne = r.nextInt(20);
-            if (plateau.presenceBombe(ligne,colonne)==false){
-                plateau.placerBombe(ligne,colonne);
-                i+=1;
+            if (plateau.presenceBombe(ligne, colonne) == false) {
+                plateau.placerBombe(ligne, colonne);
+                i += 1;
             }
         }
     }
-    
-    void initialiserPartie(){
+
+    void initialiserPartie() {
         plateau.viderGrille();
         placerBombeAlea();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Start;
-    private javax.swing.JTextField NomJoueur;
     private javax.swing.JPanel PanelAffichage;
     private javax.swing.JPanel PanelJeu;
+    private javax.swing.JTextArea TextMessage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
