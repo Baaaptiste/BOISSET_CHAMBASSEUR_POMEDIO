@@ -9,11 +9,11 @@ package demineur_boisset_chabasseur_pomedio;
  * @author bapti
  */
 public class PlateauDeJeu {
-    CelluleDeGrille[][] grille = new CelluleDeGrille[10][10] ;
+    CelluleDeGrille[][] grille = new CelluleDeGrille[20][20] ;
     
     public PlateauDeJeu() {
-        for (int ligne=0; ligne<10; ligne++){
-            for (int colonne=0; colonne<10; colonne++){
+        for (int ligne=0; ligne<20; ligne++){
+            for (int colonne=0; colonne<20; colonne++){
                 grille[ligne][colonne] = new CelluleDeGrille();
             }
         }
@@ -27,10 +27,10 @@ public class PlateauDeJeu {
         grille[ligne][colonne].placerBombe();
         for (int i = ligne-1; i<= ligne + 1; i++){
             if (i<0)i++;
-            if (i>=10)break;
+            if (i>=20)break;
             for (int j = colonne-1; j<= colonne + 1; j++){
                 if (j<0)i++;
-                if (j>=10)break;
+                if (j>=20)break;
                 if (grille[i][j].presenceBombe()==false){
                     grille[i][j].incrementerCase();
                 }
@@ -50,8 +50,8 @@ public class PlateauDeJeu {
     }  
     
     public void viderGrille(){
-        for (int ligne = 0; ligne<10;ligne++){
-            for (int colonne = 0; colonne<10;colonne++){
+        for (int ligne = 0; ligne<20;ligne++){
+            for (int colonne = 0; colonne<20;colonne++){
                 grille [ligne][colonne].retirerDrapeau();
                 grille [ligne][colonne].retirerBombe();
                 grille [ligne][colonne].initChiffre();                

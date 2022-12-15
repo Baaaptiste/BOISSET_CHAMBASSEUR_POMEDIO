@@ -17,9 +17,9 @@ public class Partie {
     public void placerBombeAlea(){
         Random r = new Random();
         int i=0;
-        while (i!=15){
-            int ligne = r.nextInt(10);
-            int colonne = r.nextInt(10);
+        while (i!=30){
+            int ligne = r.nextInt(20);
+            int colonne = r.nextInt(20);
             if (plateau.presenceBombe(ligne,colonne)==false){
                 plateau.placerBombe(ligne,colonne);
                 i+=1;
