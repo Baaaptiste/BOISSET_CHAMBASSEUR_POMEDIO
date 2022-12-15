@@ -15,12 +15,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-
 /**
  *
  * @author bapti
  */
-public class CelluleGraphique extends JButton{
+public class CelluleGraphique extends JButton {
+
     CelluleDeGrille celluleAssociee;
     ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/images/0.png"));
     ImageIcon img_1 = new javax.swing.ImageIcon(getClass().getResource("/images/1.png"));
@@ -34,33 +34,149 @@ public class CelluleGraphique extends JButton{
     ImageIcon img_Bomb = new javax.swing.ImageIcon(getClass().getResource("/images/bomb.png"));
     ImageIcon img_BombDefused = new javax.swing.ImageIcon(getClass().getResource("/images/bombDefused.png"));
     ImageIcon img_BombExploded = new javax.swing.ImageIcon(getClass().getResource("/images/bombExploded.png"));
-    ImageIcon img_BombWrongDefused= new javax.swing.ImageIcon(getClass().getResource("/images/bombWrongDefused.png"));
+    ImageIcon img_BombWrongDefused = new javax.swing.ImageIcon(getClass().getResource("/images/bombWrongDefused.png"));
     ImageIcon img_cell = new javax.swing.ImageIcon(getClass().getResource("/images/cell.png"));
-    ImageIcon img_icone= new javax.swing.ImageIcon(getClass().getResource("/images/icone.png"));
+    ImageIcon img_icone = new javax.swing.ImageIcon(getClass().getResource("/images/icone.png"));
 
     public CelluleGraphique(CelluleDeGrille uneCellule) {
-        celluleAssociee=uneCellule; 
+        celluleAssociee = uneCellule;
     }
-    
-    
-    
+
     @Override
     public void paintComponent(Graphics G) {
-        try {
-            super.paintComponent(G);
-            Image img = ImageIO.read(new File ("src/images/cell.png"));
-            G.drawImage(img,0,0,20,20,this);
-            this.setMaximumSize(new Dimension( 40,40) );
-            
 
-        } catch (IOException ex) {
-            Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+        if (celluleAssociee.presenceBombe() == false && celluleAssociee.getValChiffre()==0) {
+            try {
+                super.paintComponent(G);
+                Image img = ImageIO.read(new File("src/images/cell.png"));
+                G.drawImage(img, 0, 0, 20, 20, this);
+                this.setMaximumSize(new Dimension(40, 40));
+
+            } catch (IOException ex) {
+                Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
-        
-        
+        else {
+            int nombre = celluleAssociee.getValChiffre();
+            switch (nombre) {
+                case 1:
+                    
+                        try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/1.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 2:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/2.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 3:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/3.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 4:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/4.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 5:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/5.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 6:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/6.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 7:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/7.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case 8:
+                    
+                    try {
+                    super.paintComponent(G);
+                    Image img = ImageIO.read(new File("src/images/8.png"));
+                    G.drawImage(img, 0, 0, 20, 20, this);
+                    this.setMaximumSize(new Dimension(40, 40));
+
+                } catch (IOException ex) {
+                    Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+            }
+        }
+                if (celluleAssociee.presenceBombe() == true) {
+            try {
+                super.paintComponent(G);
+                Image img = ImageIO.read(new File("src/images/bomb.png"));
+                G.drawImage(img, 0, 0, 20, 20, this);
+                this.setMaximumSize(new Dimension(40, 40));
+
+            } catch (IOException ex) {
+                Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }
 
 }
-

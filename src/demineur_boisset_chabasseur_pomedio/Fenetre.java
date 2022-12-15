@@ -4,6 +4,8 @@
  */
 package demineur_boisset_chabasseur_pomedio;
 
+import java.util.Random;
+
 /**
  *
  * @author bapti
@@ -18,9 +20,11 @@ public class Fenetre extends javax.swing.JFrame {
         for (int i = 0; i<20; i++) {
             for (int j = 0; j < 20; j++) {
                 CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
-                PanelJeu.add(cellGraph);
+                PanelJeu.add(cellGraph);      
             }
         }
+        initialiserPartie();
+
     }
 
     /**
@@ -93,6 +97,9 @@ public class Fenetre extends javax.swing.JFrame {
 
     private void Btn_StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_StartActionPerformed
         // TODO add your handling code here:
+        initialiserPartie();
+        PanelJeu.repaint();
+        
     }//GEN-LAST:event_Btn_StartActionPerformed
 
     private void NomJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomJoueurActionPerformed
@@ -134,10 +141,22 @@ public class Fenetre extends javax.swing.JFrame {
         }); 
     }
     
-    public String InitPartie (){
+    void placerBombeAlea(){
+        Random r = new Random();
+        int i=0;
+        while (i!=10){
+            int ligne = r.nextInt(20);
+            int colonne = r.nextInt(20);
+            if (plateau.presenceBombe(ligne,colonne)==false){
+                plateau.placerBombe(ligne,colonne);
+                i+=1;
+            }
+        }
+    }
+    
+    void initialiserPartie(){
         plateau.viderGrille();
-        String  ChoixImage = "src/images/cell.png" ;
-        return ChoixImage;
+        placerBombeAlea();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

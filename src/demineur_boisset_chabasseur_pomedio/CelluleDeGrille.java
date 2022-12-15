@@ -35,9 +35,7 @@ public class CelluleDeGrille  {
          valChiffre=0;
     }
     
-    public int lireChiffre (){
-        return valChiffre;
-    }
+
     public void incrementerCase(){
         valChiffre+=1;
     }
@@ -56,5 +54,13 @@ public class CelluleDeGrille  {
         else{
             return true ;
         }
-    }    
+    }  
+
+    public int getValChiffre() {
+        return valChiffre;
+    }
+
+  
+    
+    
 }

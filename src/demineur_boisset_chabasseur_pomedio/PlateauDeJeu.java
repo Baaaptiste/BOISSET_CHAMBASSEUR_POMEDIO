@@ -31,7 +31,7 @@ public class PlateauDeJeu {
             for (int j = colonne-1; j<= colonne + 1; j++){
                 if (j<0)i++;
                 if (j>=20)break;
-                if (grille[i][j].presenceBombe()==false){
+                if (grille[i][j].presenceBombe()==false){ // revoir les indices
                     grille[i][j].incrementerCase();
                 }
             }
@@ -46,7 +46,7 @@ public class PlateauDeJeu {
         grille[ligne][colonne].placerDrapeau();
     }
     public int presenceChiffre(int ligne, int colonne){
-        return grille [ligne][colonne].lireChiffre();
+        return grille [ligne][colonne].getValChiffre();
     }  
     
     public void viderGrille(){
