@@ -8,7 +8,7 @@ package demineur_boisset_chabasseur_pomedio;
  *
  * @author bapti
  */
-public class CelluleDeGrille {
+public class CelluleDeGrille  {
     private int valChiffre;
     private boolean avoirBombe;
     private boolean avoirDrapeau;

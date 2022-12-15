@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Partie {
     private PlateauDeJeu plateau  = new PlateauDeJeu(); 
-    
+     
     
     public void placerBombeAlea(){
         Random r = new Random();

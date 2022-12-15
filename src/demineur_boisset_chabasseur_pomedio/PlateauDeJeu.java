@@ -6,7 +6,7 @@ package demineur_boisset_chabasseur_pomedio;
 
 /**
  *
- * @author bapti
+ * @author bapti 
  */
 public class PlateauDeJeu {
     CelluleDeGrille[][] grille = new CelluleDeGrille[20][20] ;

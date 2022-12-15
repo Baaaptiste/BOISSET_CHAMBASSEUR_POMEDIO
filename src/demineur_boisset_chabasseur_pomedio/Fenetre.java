@@ -131,7 +131,7 @@ public class Fenetre extends javax.swing.JFrame {
             public void run() {
                 new Fenetre().setVisible(true);
             }
-        });
+        }); 
     }
     
     public String InitPartie (){
