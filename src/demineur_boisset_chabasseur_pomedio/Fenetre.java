@@ -4,6 +4,7 @@
  */
 package demineur_boisset_chabasseur_pomedio;
 
+import java.awt.event.MouseEvent;
 import java.util.Random;
 
 /**
@@ -32,8 +33,8 @@ public class Fenetre extends javax.swing.JFrame {
                         if (cases.presenceBombe() == true) {
                             TextMessage.setText("Vous avez perdu");
                             cases.PartiePerdue();
-
                         }
+                        
                     }
 
                 });
@@ -122,7 +123,7 @@ public class Fenetre extends javax.swing.JFrame {
         // TODO add your handling code here:
         initialiserPartie();
         PanelJeu.repaint();
-
+        
     }//GEN-LAST:event_Btn_StartActionPerformed
 
     /**
@@ -176,6 +177,7 @@ public class Fenetre extends javax.swing.JFrame {
     void initialiserPartie() {
         plateau.viderGrille();
         placerBombeAlea();
+        TextMessage.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
