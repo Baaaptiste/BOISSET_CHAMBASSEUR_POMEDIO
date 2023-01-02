@@ -4,6 +4,7 @@
  */
 package demineur_boisset_chabasseur_pomedio;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
 
@@ -27,16 +28,43 @@ public class Fenetre extends javax.swing.JFrame {
                 cellGraph.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         CelluleDeGrille cases = cellGraph.celluleAssociee;
-                        if (cases.presenceBombe() == false) {
+                        if (cases.presenceBombe() == false) {           
                             cases.lirelacase();
+                            plateau.demasquerCases();
                         }
                         if (cases.presenceBombe() == true) {
                             TextMessage.setText("Vous avez perdu");
+                            plateau.DecouvrirCase();
                             cases.PartiePerdue();
+                            
+                            
+                            
                         }
+                        PanelJeu.repaint();
                         
                     }
 
+                });
+                cellGraph.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent evt) {
+                        CelluleDeGrille CASES = cellGraph.celluleAssociee;
+                        if (evt.getButton() == MouseEvent.BUTTON3) {
+                            if (CASES.presenceDrapeau()==false && CASES.isLacase()==false){
+                                CASES.placeDrapeau();
+                                if (plateau.partieGagnante() == true){
+                                    TextMessage.setText("Vous avez gagner");
+                                    plateau.DecouvrirCase();
+                                  
+                                }
+                            }
+                            else{
+                                if (CASES.isLacase()==false&&CASES.presenceDrapeau()==true)
+                                CASES.retirerDrapeau();
+                            }
+                            PanelJeu.repaint();
+                            
+                        }
+                    }
                 });
                 PanelJeu.add(cellGraph);
             }
@@ -72,7 +100,6 @@ public class Fenetre extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 540));
-        setPreferredSize(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelJeu.setBackground(new java.awt.Color(255, 255, 255));
@@ -105,7 +132,7 @@ public class Fenetre extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel2.setText("30");
+        jLabel2.setText("50");
         PanelAffichage.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 20));
 
         TextMessage.setColumns(20);
@@ -164,7 +191,7 @@ public class Fenetre extends javax.swing.JFrame {
     void placerBombeAlea() {
         Random r = new Random();
         int i = 0;
-        while (i != 10) {
+    while (i != 50) {
             int ligne = r.nextInt(20);
             int colonne = r.nextInt(20);
             if (plateau.presenceBombe(ligne, colonne) == false) {

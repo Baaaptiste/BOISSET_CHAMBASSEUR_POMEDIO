@@ -173,10 +173,7 @@ public class CelluleGraphique extends JButton {
                     break;
 
                 }
-            }
-        }
-
-        if (celluleAssociee.presenceBombe() == true) {
+                if (celluleAssociee.presenceBombe()== true) {
             try {
                 super.paintComponent(G);
                 Image img = ImageIO.read(new File("src/images/bomb.png"));
@@ -186,12 +183,29 @@ public class CelluleGraphique extends JButton {
             } catch (IOException ex) {
                 Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
+            }
+        }
+
+        
 
         if (celluleAssociee.isPerdue() == true) {
             try {
                 super.paintComponent(G);
                 Image img = ImageIO.read(new File("src/images/bombExploded.png"));
+                G.drawImage(img, 0, 0, 20, 20, this);
+                this.setMaximumSize(new Dimension(40, 40));
+
+            } catch (IOException ex) {
+                Logger.getLogger(CelluleGraphique.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (celluleAssociee.isAvoirDrapeau() == true) {
+            try {
+                super.paintComponent(G);
+                Image img = ImageIO.read(new File("src/images/bombDefused.png"));
                 G.drawImage(img, 0, 0, 20, 20, this);
                 this.setMaximumSize(new Dimension(40, 40));
 

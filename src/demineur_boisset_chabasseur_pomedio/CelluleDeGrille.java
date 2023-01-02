@@ -92,4 +92,14 @@ public class CelluleDeGrille {
         return perdue;
     }
 
+    public boolean isAvoirDrapeau() {
+        return avoirDrapeau;
+    }
+    
+    
+    public void setCache(boolean cache) {
+        this.lacase = cache;
+    }
+    
+
 }
