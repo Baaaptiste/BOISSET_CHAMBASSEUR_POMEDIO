@@ -15,9 +15,8 @@ public class CelluleDeGrille {
     private boolean avoirDrapeau;
     private boolean lacase;
     private boolean perdue;
-
+    
     public CelluleDeGrille() {
-        this.valChiffre = 0;
         this.avoirBombe = false;
         this.avoirDrapeau = false;
         this.lacase = false;
@@ -101,5 +100,5 @@ public class CelluleDeGrille {
         this.lacase = cache;
     }
     
-
+   
 }

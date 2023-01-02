@@ -15,12 +15,16 @@ import java.util.Random;
 public class Fenetre extends javax.swing.JFrame {
 
     private PlateauDeJeu plateau = new PlateauDeJeu();
-
+    int nombreBombe = 50;
+    int nombreVie = 3;
     /**
      * Creates new form Fenetre
      */
     public Fenetre() {
         initComponents();
+        nbrBombe.setText("50");
+        nbrVie.setText("3");
+        
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
@@ -28,14 +32,22 @@ public class Fenetre extends javax.swing.JFrame {
                 cellGraph.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         CelluleDeGrille cases = cellGraph.celluleAssociee;
-                        if (cases.presenceBombe() == false) {           
-                            cases.lirelacase();
+                        if (cases.presenceBombe() == false) {
+                            if (cases.presenceDrapeau()==false){                           
+                            cases.lirelacase();   
                             plateau.demasquerCases();
+                            }
                         }
                         if (cases.presenceBombe() == true) {
+                            if (cases.presenceDrapeau()==false){ 
                             TextMessage.setText("Vous avez perdu");
-                            plateau.DecouvrirCase();
+                            nombreVie-=1;
+                            nbrVie.setText(nombreVie+"");
+                            if (nombreVie==0){
+                                plateau.DecouvrirCase();
+                            }
                             cases.PartiePerdue();
+                            }
                             
                             
                             
@@ -51,19 +63,22 @@ public class Fenetre extends javax.swing.JFrame {
                         if (evt.getButton() == MouseEvent.BUTTON3) {
                             if (CASES.presenceDrapeau()==false && CASES.isLacase()==false){
                                 CASES.placeDrapeau();
+                                nombreBombe-=1;
+                                nbrBombe.setText(nombreBombe+"");
                                 if (plateau.partieGagnante() == true){
                                     TextMessage.setText("Vous avez gagner");
                                     plateau.DecouvrirCase();
-                                  
                                 }
                             }
                             else{
                                 if (CASES.isLacase()==false&&CASES.presenceDrapeau()==true)
                                 CASES.retirerDrapeau();
+                                nombreBombe+=1;
+                                nbrBombe.setText(nombreBombe+"");
                             }
                             PanelJeu.repaint();
                             
-                        }
+                        }                       
                     }
                 });
                 PanelJeu.add(cellGraph);
@@ -90,9 +105,11 @@ public class Fenetre extends javax.swing.JFrame {
         Btn_Start = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        nbrBombe = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextMessage = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        nbrVie = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -128,18 +145,25 @@ public class Fenetre extends javax.swing.JFrame {
         PanelAffichage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
 
         jLabel5.setText("Nombre de Bombe :");
-        PanelAffichage.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, 20));
+        PanelAffichage.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, 20));
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel2.setText("50");
-        PanelAffichage.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 20));
+        nbrBombe.setBackground(new java.awt.Color(0, 0, 0));
+        nbrBombe.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        nbrBombe.setText("50");
+        PanelAffichage.add(nbrBombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, 20));
 
         TextMessage.setColumns(20);
         TextMessage.setRows(5);
         jScrollPane2.setViewportView(TextMessage);
 
-        PanelAffichage.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 150, 60));
+        PanelAffichage.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 150, 50));
+
+        jLabel2.setText("Nombre de Vie:");
+        PanelAffichage.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
+
+        nbrVie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nbrVie.setText("3");
+        PanelAffichage.add(nbrVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
 
         getContentPane().add(PanelAffichage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 120));
 
@@ -219,5 +243,7 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel nbrBombe;
+    private javax.swing.JLabel nbrVie;
     // End of variables declaration//GEN-END:variables
 }

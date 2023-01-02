@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  *
- * @author bapti 
+ * @author bapti  
  */
 public class Partie {
     private PlateauDeJeu plateau  = new PlateauDeJeu(); 

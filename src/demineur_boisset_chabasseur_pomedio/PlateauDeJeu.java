@@ -107,7 +107,6 @@ public class PlateauDeJeu {
     }
 
     public void demasquerCases() {
-        for (int k = 0; k < grille.length; k++) { //on repete plusieurs fois l'action pour traiter toutes les cases
             for (int i = 0; i < grille.length; i++) {
                 for (int j = 0; j < grille.length; j++) {
                     if (grille[i][j].isLacase() == false) {
@@ -116,12 +115,11 @@ public class PlateauDeJeu {
                         }                    
                     }
                 }
-            }
-        }
+            }        
     }
-    
+     
     public boolean partieGagnante() {
-        boolean win = true; //on part du principe que la partie est gagnante, et on cherche une  bombe non marquee par un drapeau
+        boolean win = true; 
         for (int i = 0; i < grille.length; i++) {
             for (int j = 0; j < grille.length; j++) {
                 if (grille[i][j].presenceBombe()) {
@@ -135,6 +133,21 @@ public class PlateauDeJeu {
         return win;
     }
     
+    public void discoverEmptyCells( int row, int col) {// test mais echec
+        if (row >= 0 && row < grille.length && col >= 0 && col < grille[0].length && grille[row][col].isLacase()==false) {
+            if (grille[row][col].getValChiffre()==0) {
+                grille[row][col].lirelacase();
+                discoverEmptyCells( row - 1, col);
+                discoverEmptyCells( row + 1, col);
+                discoverEmptyCells( row, col - 1);
+                discoverEmptyCells( row, col + 1);
+                discoverEmptyCells( row+1, col + 1);
+                discoverEmptyCells( row+1, col - 1);
+                discoverEmptyCells( row-1, col + 1);
+                discoverEmptyCells( row-1, col - 1);
+    }
+  }
+}
 
-    
+   
 }
